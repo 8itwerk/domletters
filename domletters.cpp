@@ -9,7 +9,7 @@
 #include <unordered_map>
 using namespace std;
 
-int count_dom(const char * word);
+int count_dom(char * word);
 
 
 
@@ -17,17 +17,6 @@ int main() {
 
   int total = 0;
   char word[SIZE];
-
-  // Check for input
-  /*
-  if (cin.peek() == EOF || '\n') {
-    cout << endl
-         << "No input provided!"
-         << endl;
-
-    return 0;
-  }
-  */
 
   // Confirm input
   cout << endl
@@ -37,10 +26,11 @@ int main() {
   while (cin.peek() != EOF) {
     cin >> word;
     cout << " " << word;
-    // Process word
+    // Process word and add to running total
     total += count_dom(word);
   }
 
+  // Print result
   cout << endl 
        << "The total count of dominant letters from the input: "
        << total
@@ -51,7 +41,8 @@ int main() {
 
 
 
-int count_dom(const char * word) {
+// Process the word and return the number of dom letters
+int count_dom(char * word) {
   int count = 0;
   unordered_map<char, int> occurrence_map;
   
@@ -62,6 +53,9 @@ int count_dom(const char * word) {
     if (word[i] > 'z' || word[i] < 'A')
       return 0;
 
+    // Convert to one case
+    word[i] = toupper(word[i]);
+
     // Count letter freq 
     ++occurrence_map[word[i]];
 
@@ -70,8 +64,5 @@ int count_dom(const char * word) {
       count = occurrence_map[word[i]];
   }
 
-  if (count < 2)
-    return 0;
-  else
-    return count;
+  return count;
 }
