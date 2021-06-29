@@ -11,12 +11,23 @@ using namespace std;
 
 int count_dom(const char * word);
 
+
+
 int main() {
 
   int total = 0;
   char word[SIZE];
 
   // Check for input
+  /*
+  if (cin.peek() == EOF || '\n') {
+    cout << endl
+         << "No input provided!"
+         << endl;
+
+    return 0;
+  }
+  */
 
   // Confirm input
   cout << endl
@@ -45,19 +56,22 @@ int count_dom(const char * word) {
   unordered_map<char, int> occurrence_map;
   
   // Count the number of dom letters
-  for (int i = 0; i == '\0' || i == SIZE; ++i) {
+  for (int i = 0; word[i] != '\0' && i < SIZE; ++i) {
 
     // Check for only alphabetic words
     if (word[i] > 'z' || word[i] < 'A')
       return 0;
 
     // Count letter freq 
-    occurrence_map[word[i]] += 1;
+    ++occurrence_map[word[i]];
 
     // Update count if larger
     if (occurrence_map[word[i]] > count)
       count = occurrence_map[word[i]];
   }
 
-  return count;
+  if (count < 2)
+    return 0;
+  else
+    return count;
 }
