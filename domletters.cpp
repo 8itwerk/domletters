@@ -1,5 +1,5 @@
 // Jeffrey Jernstrom
-// CS4
+// CS461 - Open Sourse Dev Lab
 // Homework 1
 
 #define SIZE 100
